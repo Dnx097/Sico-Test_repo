@@ -69,7 +69,7 @@ namespace SicoApi.Controllers
         {
             try
             {
-                EstudianteXCurso estudianteXCurso = ConvertirADTOAEntidad(estudianteXCursoDTO);
+                EstudianteXCurso estudianteXCurso = ConvertirADTOAEntidadCrear(estudianteXCursoDTO);
                 var resultado = await _ContextEstudianteXCurso.Crear(estudianteXCurso);
                 return Ok(resultado);
             }
@@ -85,7 +85,7 @@ namespace SicoApi.Controllers
         {
             try
             {
-                EstudianteXCurso estudianteXCurso = ConvertirADTOAEntidad(estudianteXCursoDTO);
+                EstudianteXCurso estudianteXCurso = ConvertirADTOAEntidadEditar(estudianteXCursoDTO);
                 var resultado = await _ContextEstudianteXCurso.Editar(estudianteXCurso);
                 return Ok(resultado);
             }
@@ -95,7 +95,16 @@ namespace SicoApi.Controllers
             }
         }
 
-        private EstudianteXCurso ConvertirADTOAEntidad(EstudianteXCursoDTO estudianteXCursoDTO)
+        private EstudianteXCurso ConvertirADTOAEntidadCrear(EstudianteXCursoDTO estudianteXCursoDTO)
+        {
+            return new EstudianteXCurso
+            {
+                IdEstudiante = estudianteXCursoDTO.IdEstudiante,
+                IdCurso = estudianteXCursoDTO.IdCurso
+            };
+        }
+
+        private EstudianteXCurso ConvertirADTOAEntidadEditar(EstudianteXCursoDTO estudianteXCursoDTO)
         {
             return new EstudianteXCurso
             {
