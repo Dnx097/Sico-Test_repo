@@ -28,12 +28,12 @@ namespace SicoApi.Services.Service
             return await _EstudianteXCursoRepo.Editar(modelo);
         }
 
-        public async Task<bool> EliminarEstudiante(int idEstudiante, int idCurso)
+        public async Task<bool> EliminarEstudiante(int? id)
         {
             try
             {
                 IQueryable<EstudianteXCurso> Query = await _EstudianteXCursoRepo.ObtenerTodos();
-                EstudianteXCurso estudianteXCurso = Query.FirstOrDefault(x => x.IdEstudiante.Equals(idEstudiante) && x.IdCurso.Equals(idCurso));
+                EstudianteXCurso estudianteXCurso = Query.FirstOrDefault(x => x.IdEstudianteXCurso.Equals(id));
 
                 if (estudianteXCurso != null)
                 {

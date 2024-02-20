@@ -13,6 +13,6 @@ namespace SicoApi.Services.Interface
         Task<bool> Editar(EstudianteXCurso modelo);
         Task<IQueryable <EstudianteXCurso>> Obtener(int? id, string nombre, string nombreCurso);
         Task<IQueryable<EstudianteXCurso>> ObtenerTodos();
-        Task<bool> EliminarEstudiante(int idEstudiante, int idCurso);
+        Task<bool> EliminarEstudiante(int? id);
     }
 }

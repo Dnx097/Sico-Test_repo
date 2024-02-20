@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using SicoApi.Data.BD_Context;
+using SicoApi.Services.DTO;
 using SicoApi.Services.Interface;
 
 namespace SicoApi.Controllers
@@ -44,6 +46,47 @@ namespace SicoApi.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpDelete]
+        [Route("EliminarEstudianteXCurso")]
+        public async Task<IActionResult> DeleteEstudianteXCurso(int? id)
+        {
+            try
+            {
+                var ListEstudentXCurso = await _ContextEstudianteXCurso.EliminarEstudiante(id);
+                return Ok(ListEstudentXCurso);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut]
+        [Route("EditarEstudianteXCurso")]
+        public async Task<IActionResult> EditarEstudianteXCurso(EstudianteXCursoDTO estudianteXCursoDTO)
+        {
+            try
+            {
+                EstudianteXCurso estudianteXCurso = ConvertirADTOAEntidad(estudianteXCursoDTO);
+                var resultado = await _ContextEstudianteXCurso.Editar(estudianteXCurso);
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        private EstudianteXCurso ConvertirADTOAEntidad(EstudianteXCursoDTO estudianteXCursoDTO)
+        {
+            return new EstudianteXCurso
+            {
+                IdEstudianteXCurso = estudianteXCursoDTO.IdEstudianteXCurso,
+                IdEstudiante = estudianteXCursoDTO.IdEstudiante,
+                IdCurso = estudianteXCursoDTO.IdCurso
+            };
         }
     }
 }
