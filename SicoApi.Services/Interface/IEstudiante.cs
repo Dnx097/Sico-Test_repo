@@ -10,7 +10,7 @@ namespace SicoApi.Services.Interface
     public interface IEstudiante
     {
         Task<bool> Editar(Estudiante modelo);
-        Task<Estudiante> Obtener(int id);
+        Task<Estudiante> Obtener(int? id, string nombre, string correo);
         Task<IQueryable<Estudiante>> ObtenerTodos();
         Task<bool> Eliminar(Estudiante modelo);
     }
