@@ -5,9 +5,9 @@ import CourseList from './CourseList';
 
 export default function CourseModal ({ isOpen, closeModal, selectedStudent, courses, addCourseToStudent, removeCourseFromStudent }) {
   return (
-    <Modal show={isOpen} onHide={closeModal}>
+    <Modal size="lg" centered show={isOpen} onHide={closeModal}>
       <Modal.Header closeButton>
-        <Modal.Title>{selectedStudent ? `Cursos de ${selectedStudent.name}` : ''}</Modal.Title>
+        <Modal.Title>{selectedStudent ? `Cursos de: ${selectedStudent.nombresEstudiante} ${selectedStudent.apellidosEstudiante} ${selectedStudent.apellidosEstudiante} ` : ''}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <CourseList
