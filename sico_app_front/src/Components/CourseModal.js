@@ -12,6 +12,7 @@ export default function CourseModal ({ isOpen, closeModal, selectedStudent, cour
       <Modal.Body>
         <CourseList
           courses={courses}
+          selectedStudent={selectedStudent}
           addCourseToStudent={addCourseToStudent}
           removeCourseFromStudent={removeCourseFromStudent}
         />

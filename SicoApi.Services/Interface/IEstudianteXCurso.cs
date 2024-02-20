@@ -11,7 +11,7 @@ namespace SicoApi.Services.Interface
     public interface IEstudianteXCurso
     {
         Task<bool> Editar(EstudianteXCurso modelo);
-        Task<IQueryable <EstudianteXCurso>> Obtener(int? id, string nombre, string nombreCurso);
+        Task<IQueryable <EstudianteXCurso>> Obtener(int? id);
         Task<IQueryable<EstudianteXCurso>> ObtenerTodos();
         Task<bool> EliminarEstudiante(int? id);
         Task<bool> Crear(EstudianteXCurso modelo);

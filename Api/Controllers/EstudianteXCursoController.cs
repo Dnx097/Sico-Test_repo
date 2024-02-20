@@ -35,11 +35,11 @@ namespace SicoApi.Controllers
 
         [HttpGet]
         [Route("BuscarPorEstudianteXCurso")]
-        public async Task<IActionResult> GetListadoEstudiante(int? id, string? nombre, string? nombreCurso)
+        public async Task<IActionResult> GetListadoEstudiante(int? id)
         {
             try
             {
-                var ListEstudentXCurso = await _ContextEstudianteXCurso.Obtener(id, nombre, nombreCurso);
+                var ListEstudentXCurso = await _ContextEstudianteXCurso.Obtener(id);
                 return Ok(ListEstudentXCurso);
             }
             catch (Exception ex)

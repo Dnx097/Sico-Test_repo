@@ -58,19 +58,19 @@ namespace SicoApi.Services.Service
             
         }
 
-        public async Task<IQueryable<EstudianteXCurso>> Obtener(int? id, string nombre, string nombreCurso)
+        public async Task<IQueryable<EstudianteXCurso>> Obtener(int? id)
         {
             IQueryable<EstudianteXCurso> ListEstudianteXCurso = await _EstudianteXCursoRepo.ObtenerTodos().ConfigureAwait(false);
 
                 
                 
-            if (!id.HasValue && string.IsNullOrEmpty(nombre) && string.IsNullOrEmpty(nombreCurso))
+            if (!id.HasValue)
+            {
                 return null;
 
-            IQueryable<EstudianteXCurso> EstudianteXCurso = ListEstudianteXCurso.Where(x => x.IdEstudiante == (!id.HasValue ? null : id!.Value)
-            || x.IdEstudianteNavigation.NombresEstudiante!.ToUpper().Trim().Equals((string.IsNullOrEmpty(nombre) ? null : nombre.ToUpper().Trim()))
-            || x.IdCursoNavigation.NombreCurso!.ToUpper().Trim().Equals((string.IsNullOrEmpty(nombreCurso) ? null : nombreCurso.ToUpper().Trim()))
-            );
+            }
+
+            IQueryable<EstudianteXCurso> EstudianteXCurso = ListEstudianteXCurso.Where(x => x.IdEstudiante == (!id.HasValue ? null : id!.Value));
 
             return EstudianteXCurso;
         }

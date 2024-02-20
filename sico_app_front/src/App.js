@@ -19,33 +19,51 @@ const App = () => {
       .catch(error => console.error('Error al obtener estudiantes:', error));
 
     // Obtener lista de cursos desde la API
-    fetch('tu_api_rest/cursos')
+    fetch('https://localhost:7016/api/Curso/ListadoCursos')
       .then(response => response.json())
       .then(data => setCourses(data))
       .catch(error => console.error('Error al obtener cursos:', error));
   }, []);
 
   const openModal = (student) => {
+
+    const studentResponse = fetch(`https://localhost:7016/api/EstudianteXCurso/BuscarPorEstudianteXCurso?nombre=${student.nombresEstudiante}`)
+      .then(response => response.json())
+      .then(data => student.estudianteXCursos = studentResponse.map(item => item.idCurso))
+      .catch(error => console.error('Error al obtener información del estudiante:', error));
+
+
+    // student.estudianteXCursos = studentResponse.map(item => item.idCurso);
+
+    console.log(studentResponse, 'ST')
+
+
     setSelectedStudent(student);
     setModalIsOpen(true);
-  };
 
+  };
   const closeModal = () => {
     setSelectedStudent(null);
     setModalIsOpen(false);
   };
 
   const addCourseToStudent = (courseId) => {
-    // Lógica para agregar un curso al estudiante seleccionado
-    // Realiza una solicitud a tu API REST para actualizar la información
-    // Puedes usar fetch con el método POST o PUT según tus necesidades
+    const requestBody = {
+      "idEstudiante": selectedStudent.idEstudiante,
+      "idCurso": courseId
+    };
+
+    fetch('https://localhost:7016/api/EstudianteXCurso/CrearEstudianteXCurso', {
+      method: 'PUT',
+      body: JSON.stringify(requestBody), 
+    })
+      .then(response => response.json())
+      .then(data => alert(data))
+      .catch(error => console.error('Error al realizar la solicitud PUT:', error));
+
   };
 
-  const removeCourseFromStudent = (courseId) => {
-    // Lógica para quitar un curso al estudiante seleccionado
-    // Realiza una solicitud a tu API REST para actualizar la información
-    // Puedes usar fetch con el método DELETE según tus necesidades
-  };
+
 
   const handleSearch = (term) => {
     setSearchTerm(term);
@@ -70,7 +88,6 @@ const App = () => {
         selectedStudent={selectedStudent}
         courses={courses}
         addCourseToStudent={addCourseToStudent}
-        removeCourseFromStudent={removeCourseFromStudent}
       />
     </Container>
   );
