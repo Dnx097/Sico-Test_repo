@@ -13,7 +13,7 @@ const App = () => {
 
   useEffect(() => {
     // Obtener lista de estudiantes desde la API
-    fetch('tu_api_rest/estudiantes')
+    fetch('https://localhost:7016/api/Estudiante/ListadoTotal')
       .then(response => response.json())
       .then(data => setStudents(data))
       .catch(error => console.error('Error al obtener estudiantes:', error));
