@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SicoApi.Data\SicoApi.Data.csproj" />
+  </ItemGroup>
+
 </Project>
