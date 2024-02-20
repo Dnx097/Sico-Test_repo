@@ -1,4 +1,5 @@
-﻿using SicoApi.Data.BD_Context;
+﻿using Microsoft.EntityFrameworkCore;
+using SicoApi.Data.BD_Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace SicoApi.Data.Repositories
 
         public async Task<IQueryable<EstudianteXCurso>> ObtenerTodos()
         {
-            IQueryable<EstudianteXCurso> queryCursoSQL = _context.EstudianteXCursos;
+            IQueryable<EstudianteXCurso> queryCursoSQL = _context.EstudianteXCursos.Include(x => x.IdEstudianteNavigation).Include(x => x.IdCursoNavigation);
             return queryCursoSQL;
         }
     }

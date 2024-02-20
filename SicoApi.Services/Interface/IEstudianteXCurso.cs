@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SicoApi.Services.Interface
 {
     public interface IEstudianteXCurso
     {
         Task<bool> Editar(EstudianteXCurso modelo);
-        Task<EstudianteXCurso> Obtener(int id);
+        Task<IQueryable <EstudianteXCurso>> Obtener(int? id, string nombre, string nombreCurso);
         Task<IQueryable<EstudianteXCurso>> ObtenerTodos();
         Task<bool> EliminarEstudiante(int idEstudiante, int idCurso);
     }
