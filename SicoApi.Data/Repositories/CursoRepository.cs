@@ -15,6 +15,13 @@ namespace SicoApi.Data.Repositories
             _context = context;
         }
 
+        public async Task<bool> Crear(Curso modelo)
+        {
+            _context.Cursos.Add(modelo);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
         public async Task<bool> Editar(Curso modelo)
         {
             _context.Cursos.Update(modelo);

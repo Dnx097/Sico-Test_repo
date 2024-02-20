@@ -63,6 +63,22 @@ namespace SicoApi.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("CrearEstudianteXCurso")]
+        public async Task<IActionResult> CrearEstudianteXCurso(EstudianteXCursoDTO estudianteXCursoDTO)
+        {
+            try
+            {
+                EstudianteXCurso estudianteXCurso = ConvertirADTOAEntidad(estudianteXCursoDTO);
+                var resultado = await _ContextEstudianteXCurso.Crear(estudianteXCurso);
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPut]
         [Route("EditarEstudianteXCurso")]
         public async Task<IActionResult> EditarEstudianteXCurso(EstudianteXCursoDTO estudianteXCursoDTO)

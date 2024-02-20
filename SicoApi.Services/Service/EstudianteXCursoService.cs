@@ -23,6 +23,11 @@ namespace SicoApi.Services.Service
             _EstudianteRepo = EstudianteRepo;
             _CursoRepo = CursoRepo;
         }
+        public async Task<bool> Crear(EstudianteXCurso modelo)
+        {
+            return await _EstudianteXCursoRepo.Crear(modelo);
+            
+        }
         public async Task<bool> Editar(EstudianteXCurso modelo)
         {
             return await _EstudianteXCursoRepo.Editar(modelo);
