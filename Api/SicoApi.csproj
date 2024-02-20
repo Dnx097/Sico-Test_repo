@@ -10,4 +10,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SicoApi.Data\SicoApi.Data.csproj" />
+    <ProjectReference Include="..\SicoApi.Services\SicoApi.Services.csproj" />
+  </ItemGroup>
+
 </Project>

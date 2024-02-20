@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using SicoApi.Data.BD_Context;
 
 namespace SicoApi
 {
@@ -5,6 +7,7 @@ namespace SicoApi
     {
         public static void Main(string[] args)
         {
+            
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -13,6 +16,11 @@ namespace SicoApi
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<SicoTestContext>(opciones =>
+            {
+                opciones.UseSqlServer(builder.Configuration.GetConnectionString("cadenaConexion"));
+            });
 
             var app = builder.Build();
 
